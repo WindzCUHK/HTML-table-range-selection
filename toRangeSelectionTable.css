@@ -1,0 +1,13 @@
+.range-selection {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-webkit-touch-callout: none;
+}
+.selected {
+	background-color: #DBE065;
+}
+
+td.area-selected {
+	background-color: #B0CE12;
+}

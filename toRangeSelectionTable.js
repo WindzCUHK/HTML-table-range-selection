@@ -35,6 +35,7 @@ var toRangeSelectionTable = function (tableNode) {
 				ey = sy;
 				sy = swapTmp;
 			}
+			// console.log(sx, sy, ex, ey);
 
 			// area selection
 			var table = start.parentElement.parentElement;
@@ -60,6 +61,13 @@ var toRangeSelectionTable = function (tableNode) {
 			// select current cell
 			startCell = e.target;
 			startCell.classList.add("selected");
+
+			// let table get selected for the copy event
+			var range = document.createRange();
+			range.selectNode(startCell);
+			var selection = window.getSelection();
+			selection.removeAllRanges();
+			selection.addRange(range);
 		});
 		td.addEventListener("mouseup", function(e) {
 			startCell = null;
@@ -85,14 +93,14 @@ var toRangeSelectionTable = function (tableNode) {
 	tableNode.addEventListener("copy", function(e) {
 
 		var table = e.target;
-		while ((table.tagName !== "TABLE" || table.tagName !== "TBODY") && table.parentElement != null) table = table.parentElement;
+		while ((table.tagName !== "TABLE" && table.tagName !== "TBODY") && table.parentElement != null) table = table.parentElement;
 		if (!table) return;
 
 		var trs = table.querySelectorAll("tr.area-selected");
 		if (trs.length === 0) {
-			console.log("no area selection");
+			// console.log("no area selection");
 			var currentSelection = table.querySelector("td.selected");
-			console.log(table, table.querySelector("td.selected"));
+			// console.log(table, table.querySelector("td.selected"));
 			if (currentSelection) e.clipboardData.setData('text/plain', currentSelection.textContent);
 		} else {
 			var copyStrings = [];
