@@ -1,0 +1,23 @@
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 1em 0;
+}
+td {
+	border: 1px solid black;
+}
+
+.range-selection {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-webkit-touch-callout: none;
+}
+.selected {
+	background-color: red;
+}
+
+.area-selected {
+	background-color: steelblue;
+}
